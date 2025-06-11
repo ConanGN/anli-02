@@ -3,7 +3,16 @@ import { Space, Card } from 'antd'
 import { data } from '@/data'
 import { notFound } from 'next/navigation'
 
-const Page = ({params}: {params: {id: string}}) => {
+interface Iparams { params: { id: string } }
+
+export async function generateMetadata({ params }: Iparams) {
+  return {
+    title: `博客详情 - ${params.id}`,
+  }
+}
+
+
+const Page = ({params}: Iparams) => {
     const {id} = params
     const item = data.find((item) => item.id === parseInt(id, 10))
 
